@@ -43,13 +43,13 @@ namespace BulkyWeb.Controllers
 			return View();
         }
 
-        public IActionResult Edit(int? categoryId)
+        public IActionResult Edit(int? id)
         {
-            if (categoryId == null || categoryId == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(categoryId);
+            Category? categoryFromDb = _db.Categories.Find(id);
             if (categoryFromDb == null)
             {
                 return NotFound();
