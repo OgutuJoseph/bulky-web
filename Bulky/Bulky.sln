@@ -7,11 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWeb", "BulkyWeb\BulkyW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyWebRazor_Temp", "BulkyWebRazor_Temp\BulkyWebRazor_Temp.csproj", "{86B84280-FF7D-45C3-9F6E-3B833DE91AE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.DataAccess", "Bulky.DataAccess\Bulky.DataAccess.csproj", "{006BAA92-A705-43E5-9E49-0AF7B078F7A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.DataAccess", "Bulky.DataAccess\Bulky.DataAccess.csproj", "{006BAA92-A705-43E5-9E49-0AF7B078F7A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.Models", "Bulky.Models\Bulky.Models.csproj", "{6131AADF-F358-426B-972E-60329F939E32}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulk.Utility", "Bulk.Utility\Bulk.Utility.csproj", "{4CA6B50D-BB41-4845-8506-83784FF0425D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bulky.Models", "Bulky.Models\Bulky.Models.csproj", "{6131AADF-F358-426B-972E-60329F939E32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{6131AADF-F358-426B-972E-60329F939E32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6131AADF-F358-426B-972E-60329F939E32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6131AADF-F358-426B-972E-60329F939E32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CA6B50D-BB41-4845-8506-83784FF0425D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CA6B50D-BB41-4845-8506-83784FF0425D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CA6B50D-BB41-4845-8506-83784FF0425D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CA6B50D-BB41-4845-8506-83784FF0425D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

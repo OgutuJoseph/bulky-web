@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulk.Utility\\Bulk.Utility.csproj",
-      "projectName": "Bulk.Utility",
-      "projectPath": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulk.Utility\\Bulk.Utility.csproj",
+      "projectUniqueName": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
+      "projectName": "Bulky.Utility",
+      "projectPath": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky.Utility\\Bulky.Utility.csproj",
       "packagesPath": "C:\\Users\\AB030WP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulk.Utility\\obj\\",
+      "outputPath": "C:\\Users\\AB030WP\\OneDrive - Absa\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky.Utility\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\AB030WP\\AppData\\Roaming\\NuGet\\NuGet.Config",
