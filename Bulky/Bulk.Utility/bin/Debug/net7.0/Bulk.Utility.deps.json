@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Bulk.Utility/1.0.0": {
+        "runtime": {
+          "Bulk.Utility.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bulk.Utility/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
