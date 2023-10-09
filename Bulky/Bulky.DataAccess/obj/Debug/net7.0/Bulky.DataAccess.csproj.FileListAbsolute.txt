@@ -1,0 +1,12 @@
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\bin\Debug\net7.0\Bulky.DataAccess.deps.json
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\bin\Debug\net7.0\Bulky.DataAccess.dll
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\bin\Debug\net7.0\Bulky.DataAccess.pdb
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.csproj.AssemblyReference.cache
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.AssemblyInfoInputs.cache
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.AssemblyInfo.cs
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.dll
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\refint\Bulky.DataAccess.dll
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\Bulky.DataAccess.pdb
+C:\Users\AB030WP\OneDrive - Absa\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky.DataAccess\obj\Debug\net7.0\ref\Bulky.DataAccess.dll
