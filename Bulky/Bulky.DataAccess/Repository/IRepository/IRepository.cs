@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository.IRepository
 {
-    internal interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // T - Category
         // Get All
@@ -19,8 +19,8 @@ namespace Bulky.DataAccess.Repository.IRepository
         // Add One
         void Add(T entity);
 
-        // Update One
-        void Update(T entity);
+        // Update One <! Removed as it's a generic repository, implemented on specific repository !>
+        //void Update(T entity);
 
         // Delete One
         void Remove(T entity);
