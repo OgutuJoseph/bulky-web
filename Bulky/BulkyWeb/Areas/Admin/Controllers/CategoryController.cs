@@ -3,46 +3,47 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyBookWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
-	public class CategoryController : Controller
-	{
-		private readonly IUnitOfWork _unitOfWork;
+    [Area("Admin")]
+    public class CategoryController : Controller
+    {
+        private readonly IUnitOfWork _unitOfWork;
         public CategoryController(IUnitOfWork unitOfWork)
         {
-			_unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
-		{
-			List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
-			return View(objCategoryList);
-		}
+        {
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
+            return View(objCategoryList);
+        }
 
-		public IActionResult Create()
-		{
-			return View();
-		}
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-		[HttpPost]
+        [HttpPost]
         public IActionResult Create(Category obj)
         {
-			if (obj.Name == obj.DisplayOrder.ToString())
-			{
-				ModelState.AddModelError("Name", "The Display Order cannot exactly match the Name");
-			}
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "The Display Order cannot exactly match the Name");
+            }
             //if (obj.Name != null && obj.Name.ToLower() == "test" || obj.Name != null && obj.Name.ToLower() == "testing")
             //{
             //    ModelState.AddModelError("", "Test is an invalid value");
             //}
             if (ModelState.IsValid)
-			{
+            {
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Category created successfully.";
                 return RedirectToAction("Index");
             }
-			
-			return View();
+
+            return View();
         }
 
         public IActionResult Edit(int? id)
