@@ -7,7 +7,7 @@
 namespace BulkyBook.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateAndSeedDatabase : Migration
+    public partial class CreateAndSeedDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
