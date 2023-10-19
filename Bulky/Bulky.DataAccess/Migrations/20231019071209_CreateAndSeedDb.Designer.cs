@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyBook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231018091722_CreateAndSeedDatabase")]
-    partial class CreateAndSeedDatabase
+    [Migration("20231019071209_CreateAndSeedDb")]
+    partial class CreateAndSeedDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
