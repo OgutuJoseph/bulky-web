@@ -64,7 +64,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 string wwwRoot = _webHostEnvironment.WebRootPath;
                 if (file != null)
                 {
-                    string filename = Guid.NewGuid().ToString();
+                    string filename = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     var productPath = Path.Combine(wwwRoot, @"images\product");
 
                     using (var fileStream = new FileStream(Path.Combine(productPath, filename), FileMode.Create))
