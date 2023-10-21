@@ -11,10 +11,10 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     {
         // T - Category
         // Get All
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includeProperties = null);
 
         // Get One
-        T Get(Expression<Func<T, bool>> filter);
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
 
         // Add One
         void Add(T entity);

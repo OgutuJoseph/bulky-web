@@ -17,11 +17,9 @@
 
                         <div asp-validation-summary="All"></div>
 
-                        <div class="form-floating py-2 col-12" hidden>
-                            <input asp-for="Product.Id" class="form-control border-0 shadow" />
-                            <label asp-for="Product.Id" class="ms-2"></label>
-                            <span asp-validation-for="Product.Id" class="text-danger"></span>
-                        </div>
+                        @* hidden fields *@
+                        <input asp-for="Product.Id" hidden />
+                        <input asp-for="Product.ImageUrl" hidden />
 
                         <div class="form-floating py-2 col-12">
                             <input asp-for="Product.Title" class="form-control border-0 shadow" />
