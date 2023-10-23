@@ -140,5 +140,18 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successfully.";
             return RedirectToAction("Index");
         }
+
+        # region API Calls
+
+        [HttpGet]
+        public IActionResult GetAll(int id)
+        {
+            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new
+            {
+                data = objProductList
+            });
+        }
+        # endregion
     }
 }
