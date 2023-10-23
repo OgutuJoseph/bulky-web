@@ -141,8 +141,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        # region API Calls
 
+        # region API Calls
         [HttpGet]
         public IActionResult GetAll(int id)
         {
