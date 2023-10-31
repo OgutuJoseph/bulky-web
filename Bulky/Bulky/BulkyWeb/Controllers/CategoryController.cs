@@ -67,11 +67,12 @@ namespace BulkyWeb.Controllers
             if (ModelState.IsValid)
             {
                 _db.Categories.Update(obj);
-                _db.SaveChanges(); 
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View();
-
         }
+
     }
+}
