@@ -13,7 +13,7 @@ namespace Bulky.DataAccess.Repository.IRepository
         void Update(Category obj);
 
         // Save Changes
-        void Save();
+        //void Save();
 
     }
 }
