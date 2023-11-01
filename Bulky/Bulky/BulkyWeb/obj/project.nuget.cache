@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+rm/qB14fsP9DD3P4i//thb2ya+xCbAqKa3/rsxvVgGejhJLaZoPMN6p1HDBL/ugBoufMmoUMwa7Y4dyw3OwLQ==",
+  "dgSpecHash": "wdePFpGkYggUFkC8dGKiXkgSLw5kOQSH7fgHnB9ezIs14awGrbhuhF+M44FgH5Mjxyoh7o1u/w7+mEbqU28DBQ==",
   "success": true,
-  "projectFilePath": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
+  "projectFilePath": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\BulkyBookWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AB030WP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\AB030WP\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

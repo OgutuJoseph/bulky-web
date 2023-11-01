@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\Bulky.Models\\Bulky.Models.csproj",
-      "projectName": "Bulky.Models",
-      "projectPath": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\Bulky.Models\\Bulky.Models.csproj",
+      "projectUniqueName": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj",
+      "projectName": "BulkyBook.Models",
+      "projectPath": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\Bulky.Models\\BulkyBook.Models.csproj",
       "packagesPath": "C:\\Users\\AB030WP\\.nuget\\packages\\",
       "outputPath": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\Bulky.Models\\obj\\",
       "projectStyle": "PackageReference",
