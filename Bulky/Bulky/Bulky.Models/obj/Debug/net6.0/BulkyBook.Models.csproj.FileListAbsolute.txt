@@ -9,3 +9,4 @@ D:\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky\Bulky.Models\obj\Debug\net6.0\B
 D:\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky\Bulky.Models\obj\Debug\net6.0\refint\BulkyBook.Models.dll
 D:\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky\Bulky.Models\obj\Debug\net6.0\BulkyBook.Models.pdb
 D:\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky\Bulky.Models\obj\Debug\net6.0\ref\BulkyBook.Models.dll
+D:\OgutuJoseph\Projects\C#\bulky-web\Bulky\Bulky\Bulky.Models\obj\Debug\net6.0\BulkyBook.Models.csproj.AssemblyReference.cache
