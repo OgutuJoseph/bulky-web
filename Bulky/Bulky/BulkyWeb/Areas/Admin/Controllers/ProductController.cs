@@ -62,6 +62,18 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                     string filename = Guid.NewGuid().ToString() + Path.GetExtension(fileImage.FileName);
                     var productPath = Path.Combine(wwwRootPath, @"images\product");
 
+                    // for when you're updating, i.e., an image already exists
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    {
+                        // delete old image
+                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
                     using (var fileStream = new FileStream(Path.Combine(productPath, filename), FileMode.Create))
                     {
                         fileImage.CopyTo(fileStream);
@@ -69,7 +81,17 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
                     productVM.Product.ImageUrl = @"\images\product\" + filename;
                 }
-                _unitOfWork.Product.Add(productVM.Product);
+
+                // if it's adding new
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                }
+                // if it's updating existing
+                else
+                {
+                    _unitOfWork.Product.Update(productVM.Product);
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully.";
                 return RedirectToAction("Index");
