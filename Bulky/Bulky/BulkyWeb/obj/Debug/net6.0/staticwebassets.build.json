@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "P1fhYVMeR5nj03FarDSYKx/+mHHDshUpmgUv/O0kfdo=",
+  "Hash": "NN0heaA/B9LSD834Ed5vXZ8jl5cVQIdg76ZBbMYMjL4=",
   "Source": "BulkyBookWeb",
   "BasePath": "_content/BulkyBookWeb",
   "Mode": "Default",
@@ -153,23 +153,6 @@
       "OriginalItemSpec": "wwwroot\\images\\product\\640f12cf-e39e-4115-b325-dd4e34eebbac.jpg"
     },
     {
-      "Identity": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\images\\product\\7a882bd7-adb5-4997-930d-5f273bec8f2b.png",
-      "SourceId": "BulkyBookWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\",
-      "BasePath": "_content/BulkyBookWeb",
-      "RelativePath": "images/product/7a882bd7-adb5-4997-930d-5f273bec8f2b.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\product\\7a882bd7-adb5-4997-930d-5f273bec8f2b.png"
-    },
-    {
       "Identity": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\images\\product\\a4348005-9ea1-4725-a74f-31d8749c1889.jpg",
       "SourceId": "BulkyBookWeb",
       "SourceType": "Discovered",
@@ -202,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\product\\c36d1981-fcc6-4b81-a2f3-968343863488.jpg"
+    },
+    {
+      "Identity": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\js\\product.js",
+      "SourceId": "BulkyBookWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\",
+      "BasePath": "_content/BulkyBookWeb",
+      "RelativePath": "js/product.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\product.js"
     },
     {
       "Identity": "D:\\OgutuJoseph\\Projects\\C#\\bulky-web\\Bulky\\Bulky\\BulkyWeb\\wwwroot\\js\\site.js",

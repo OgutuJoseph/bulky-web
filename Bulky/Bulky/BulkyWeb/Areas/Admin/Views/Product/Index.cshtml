@@ -18,7 +18,7 @@
                 </a>
             </div>
         </div>
-        <table class="table table-bordered table-striped">
+        <table id="productsTable" class="table table-bordered table-striped" width="100%">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -26,14 +26,16 @@
                     <th>Author</th>
                     <th>List Price</th>
                     <th>Price</th>
-                    <th>Price for 50</th>
-                    <th>Price for 100</th>
+                    @* <th>Price for 50</th> *@
+                    @* <th>Price for 100</th> *@
                     <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var obj in Model)
+
+            @* Retrieved from DataTable *@
+              @*   @foreach (var obj in Model)
                 {
                     <tr>
                         <td>@obj.Title</td>
@@ -55,8 +57,12 @@
                             </div>
                         </td>
                     </tr>
-                }
+                } *@
             </tbody>
         </table>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}
