@@ -15,48 +15,48 @@
                 <div asp-validation-summary="All"></div>
 
                 <div class="form-floating py-2 col-12" hidden>
-                    <input asp-for="Id" class="form-control border-0 shadow" />
+                    <input asp-for="Id" class="form-control border-0 shadow" disabled />
                     <label asp-for="Id" class="ms-2"></label>
                     <span asp-validation-for="Id" class="text-danger"></span>
                 </div>
 
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Title" class="form-control border-0 shadow" />
+                    <input asp-for="Title" class="form-control border-0 shadow" disabled />
                     <label asp-for="Title" class="ms-2"></label>
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-                <div class="form-floating py-2 col-12">
-                    <input asp-for="Description" class="form-control border-0 shadow" />
-                    <label asp-for="Description" class="ms-2"></label>
+                <div class="py-2 col-12">
+                    <label asp-for="Description" class="ms-2 text-muted"></label>
+                    <textarea asp-for="Description" class="form-control border-0 shadow" disabled>Product Description</textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="ISBN" class="form-control border-0 shadow" />
+                    <input asp-for="ISBN" class="form-control border-0 shadow" disabled />
                     <label asp-for="ISBN" class="ms-2"></label>
                     <span asp-validation-for="ISBN" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Author" class="form-control border-0 shadow" />
+                    <input asp-for="Author" class="form-control border-0 shadow" disabled />
                     <label asp-for="Author" class="ms-2"></label>
                     <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="ListPrice" class="form-control border-0 shadow" />
+                    <input asp-for="ListPrice" class="form-control border-0 shadow" disabled />
                     <label asp-for="ListPrice" class="ms-2"></label>
                     <span asp-validation-for="ListPrice" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Price" class="form-control border-0 shadow" />
+                    <input asp-for="Price" class="form-control border-0 shadow" disabled />
                     <label asp-for="Price" class="ms-2"></label>
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Price50" class="form-control border-0 shadow" />
+                    <input asp-for="Price50" class="form-control border-0 shadow" disabled />
                     <label asp-for="Price50" class="ms-2"></label>
                     <span asp-validation-for="Price50" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="Price100" class="form-control border-0 shadow" />
+                    <input asp-for="Price100" class="form-control border-0 shadow" disabled />
                     <label asp-for="Price100" class="ms-2"></label>
                     <span asp-validation-for="Price100" class="text-danger"></span>
                 </div>
@@ -75,6 +75,13 @@
 
 
 @section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
     @{
         <partial name="_ValidationScriptsPartial"></partial>
     }
