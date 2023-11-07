@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using BulkyBook.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -154,11 +155,25 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        //private IdentityUser CreateUser()
+        //{
+        //    try
+        //    {
+        //        return Activator.CreateInstance<IdentityUser>();
+        //    }
+        //    catch
+        //    {
+        //        throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+        //            $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+        //            $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+        //    }
+        //}
+
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
