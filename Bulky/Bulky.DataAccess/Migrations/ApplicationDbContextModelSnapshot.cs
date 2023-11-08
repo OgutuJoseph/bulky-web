@@ -93,6 +93,38 @@ namespace BulkyBook.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Nairobi",
+                            Name = "Tech Solution",
+                            PhoneNumber = "0700100100",
+                            PostalCode = "00100",
+                            State = "Nairobi",
+                            StreetAddress = "123 Tech St"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Nairobi",
+                            Name = "Vivid Books",
+                            PhoneNumber = "0700200200",
+                            PostalCode = "00100",
+                            State = "Nairobi",
+                            StreetAddress = "999 Vivid St"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Nairobi",
+                            Name = "Readers Club",
+                            PhoneNumber = "0700300300",
+                            PostalCode = "00100",
+                            State = "Nairobi",
+                            StreetAddress = "999 Main St"
+                        });
                 });
 
             modelBuilder.Entity("BulkyBook.Models.Product", b =>
