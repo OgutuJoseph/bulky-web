@@ -39,13 +39,6 @@
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="form-floating py-2 col-md-6">
-                        <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select border-0 shadow">
-                            <option disabled selected>--Select Role--</option>
-                        </select>
-                        <label asp-for="Input.Role" class="text-muted ms-2"></label>
-                        @* <span asp-validation-for="Product.CategoryId" class="text-danger"></span> *@
-                    </div>
-                    <div class="form-floating py-2 col-md-6">
                         <input asp-for="Input.PhoneNumber" class="form-control border-0 shadow" aria-required="true" />
                         <label asp-for="Input.PhoneNumber" class="text-muted ms-2"></label>
                         <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
@@ -69,6 +62,19 @@
                         <input asp-for="Input.PostalCode" class="form-control border-0 shadow" aria-required="true" />
                         <label asp-for="Input.PostalCode" class="text-muted ms-2"></label>
                         <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating py-2 col-md-6">
+                        <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select border-0 shadow">
+                            <option disabled selected>--Select Role--</option>
+                        </select>
+                        <label asp-for="Input.Role" class="text-muted ms-2"></label>
+                        @* <span asp-validation-for="Product.CategoryId" class="text-danger"></span> *@
+                    </div>
+                    <div class="form-floating py-2 col-md-6">
+                        <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-select border-0 shadow">
+                            <option disabled selected>--Select Company--</option>
+                        </select>
+                        <label asp-for="Input.CompanyId" class="text-muted ms-2"></label> 
                     </div>
                     <div class="row pt-2">
                         <div>
