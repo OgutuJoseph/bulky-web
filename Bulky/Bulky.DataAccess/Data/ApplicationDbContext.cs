@@ -18,6 +18,8 @@ namespace BulkyBook.DataAccess.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Company> Companies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -112,6 +114,39 @@ namespace BulkyBook.DataAccess.Data
                         Price100 = 20,
                         CategoryId = 2,
                         ImageUrl = ""
+                    }
+                );
+
+            modelBuilder.Entity<Company>().HasData(
+                    new Company
+                    {
+                        Id = 1,
+                        Name = "Tech Solution",
+                        StreetAddress = "123 Tech St",
+                        City = "Nairobi",
+                        State = "Nairobi",
+                        PostalCode = "00100",
+                        PhoneNumber = "0700100100"
+                    },
+                    new Company
+                    {
+                        Id = 2,
+                        Name = "Vivid Books",
+                        StreetAddress = "999 Vivid St",
+                        City = "Nairobi",
+                        State = "Nairobi",
+                        PostalCode = "00100",
+                        PhoneNumber = "0700200200"
+                    },
+                    new Company
+                    {
+                        Id = 3,
+                        Name = "Readers Club",
+                        StreetAddress = "999 Main St",
+                        City = "Nairobi",
+                        State = "Nairobi",
+                        PostalCode = "00100",
+                        PhoneNumber = "0700300300"
                     }
                 );
         }
