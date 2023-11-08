@@ -89,48 +89,23 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 if (productVM.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product Created Successfully.";
+                    return RedirectToAction("Index");
                 }
                 // if it's updating existing
                 else
                 {
                     _unitOfWork.Product.Update(productVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product Updated Successfully.";
+                    return RedirectToAction("Index");
                 }
-                _unitOfWork.Save();
-                TempData["success"] = "Product created successfully.";
-                return RedirectToAction("Index");
+                
             }
 
             return View();
         }
-
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-        //    if (productFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(productFromDb);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeletePost(int? id)
-        //{
-        //    Product? obj = _unitOfWork.Product.Get(u => u.Id == id);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _unitOfWork.Product.Remove(obj);
-        //    _unitOfWork.Save();
-        //    TempData["success"] = "Product deleted successfully.";
-        //    return RedirectToAction("Index");
-        //}
 
 
         # region API Calls
@@ -172,7 +147,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             return Json(new
             {
                 success = true,
-                message = "Successfully deleted product."
+                message = "Product Deleted Successfully"
             });
         }
         # endregion
