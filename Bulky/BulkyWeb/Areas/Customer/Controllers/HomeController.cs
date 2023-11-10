@@ -47,22 +47,35 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         public IActionResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;          
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            ShoppingCart cart = new()
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+            
+            if (cartFromDb != null)
             {
-                ProductId = shoppingCart.ProductId,
-                Count = shoppingCart.Count,
-                ApplicationUserId = userId
-            };
-
-            _unitOfWork.ShoppingCart.Add(cart);
-            _unitOfWork.Save();
-            TempData["success"] = "Item added to cart.";
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
+                TempData["success"] = "Cart details updated successfully.";
+            }
+            else
+            {
+                // add new cart
+                ShoppingCart cart = new()
+                {
+                    ProductId = shoppingCart.ProductId,
+                    Count = shoppingCart.Count,
+                    ApplicationUserId = userId
+                };
+                _unitOfWork.ShoppingCart.Add(cart);
+                _unitOfWork.Save();
+                TempData["success"] = "Item added to cart.";               
+            }
 
             //return View(shoppingCart);
             //return RedirectToAction("Index");
             return RedirectToAction(nameof(Index));
+
         }
 
         public IActionResult Privacy()
