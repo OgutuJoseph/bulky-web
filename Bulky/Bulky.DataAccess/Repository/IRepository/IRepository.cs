@@ -11,7 +11,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     {
         // T - Category
         // Get All
-        IEnumerable<T> GetAll(string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter=null, string? includeProperties = null);
 
         // Get One
         T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false);
