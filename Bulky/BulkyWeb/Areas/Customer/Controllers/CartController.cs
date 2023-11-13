@@ -83,6 +83,11 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             TempData["success"] = "Item removed from cart successfully.";
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Summary ()
+        {
+            return View();
+        }
         #endregion
 
         #region Helper Methods
