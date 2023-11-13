@@ -17,6 +17,8 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        #region Action Methods
         public IActionResult Index()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -32,16 +34,58 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 
             foreach (var cart in ShoppingCartVM.ShoppingCartList)
             {
-                // <! Below is better presented as !>
-                //double price = GetPriceBasedOnQuantity(cart);
-                //ShoppingCartVM.OrderTotal += (price * cart.Count);
-
                 cart.Price = GetPriceBasedOnQuantity(cart);
                 ShoppingCartVM.OrderTotal += (cart.Price * cart.Count);
             }
 
             return View(ShoppingCartVM);
         }
+
+        public IActionResult Plus (int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            cartFromDb.Count += 1;
+            _unitOfWork.ShoppingCart.Update(cartFromDb);
+            _unitOfWork.Save();
+            TempData["success"] = "Cart details updated successfully.";
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Minus(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            
+            if (cartFromDb.Count <= 1)
+            {
+                // Remove item from cart
+                _unitOfWork.ShoppingCart.Remove(cartFromDb);
+                _unitOfWork.Save();
+                TempData["success"] = "Item removed from cart successfully.";
+
+            }
+            else
+            {
+                // Update cart
+                cartFromDb.Count -= 1;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
+                TempData["success"] = "Cart details updated successfully.";
+            }            
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Remove(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.Id == cartId);
+            _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            _unitOfWork.Save();
+            TempData["success"] = "Item removed from cart successfully.";
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        #region Helper Methods
 
         private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
         {
@@ -62,5 +106,6 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 }
             }
         }
+        #endregion
     }
 }
