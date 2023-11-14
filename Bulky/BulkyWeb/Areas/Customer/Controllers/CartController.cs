@@ -133,13 +133,15 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
             ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
             ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
 
+            ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+
 			foreach (var cart in ShoppingCartVM.ShoppingCartList)
 			{
 				cart.Price = GetPriceBasedOnQuantity(cart);
 				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
 
-            if (ShoppingCartVM.OrderHeader.ApplicationUser.CompanyId.GetValueOrDefault() == 0)
+            if (applicationUser.CompanyId.GetValueOrDefault() == 0)
             {
                 // regular user scenario
                 ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
@@ -152,11 +154,11 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 				ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusDelayedPayment;
 			}
 
-            // Save Order Header
+            // <! Save Order Header !>
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _unitOfWork.Save();
 
-            // Save Order Details
+            // <! Save Order Details !>
             foreach(var cart in ShoppingCartVM.ShoppingCartList)
             {
                 OrderDetail orderDetail = new()
@@ -170,9 +172,21 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
                 _unitOfWork.Save();
             }
 
+
+            // <! capture payment logic for regular user !>
+            if (applicationUser.CompanyId.GetValueOrDefault() == 0)
+            {
+                // stripe logic
+            }
+
 			TempData["success"] = "Order details submitted successfully.";
-			return View(ShoppingCartVM);
+			return RedirectToAction(nameof(OrderConfirmation), new { id=ShoppingCartVM.OrderHeader.Id });
 		}
+
+        public IActionResult OrderConfirmation (int id)
+        {
+            return View(id);
+        }
 		#endregion
 
 		#region Helper Methods
