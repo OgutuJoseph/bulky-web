@@ -118,7 +118,6 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
         #endregion
 
         #region Helper Methods
-
         private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count <= 50)
