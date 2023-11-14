@@ -1,6 +1,7 @@
 ﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using BulkyBook.Models.ViewModels;
+using BulkyBook.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -11,6 +12,7 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
     {
         public readonly IUnitOfWork _unitOfWork;
 
+        [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
 
         public CartController (IUnitOfWork unitOfWork)
@@ -115,10 +117,80 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 
             return View(ShoppingCartVM);
         }
-        #endregion
 
-        #region Helper Methods
-        private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
+        [HttpPost]
+        [ActionName("Summary")]
+		public IActionResult SummaryPOST()
+		{
+			var claimsIdentity = (ClaimsIdentity)User.Identity;
+			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ShoppingCartVM.ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(
+                    u => u.ApplicationUserId == userId,
+                    includeProperties: "Product"
+                );
+
+            ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
+            ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
+
+            ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId);
+
+			foreach (var cart in ShoppingCartVM.ShoppingCartList)
+			{
+				cart.Price = GetPriceBasedOnQuantity(cart);
+				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+			}
+
+            if (applicationUser.CompanyId.GetValueOrDefault() == 0)
+            {
+                // regular user scenario
+                ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+                ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
+            }
+            else
+            {
+				// company user scenario
+				ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusApproved;
+				ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusDelayedPayment;
+			}
+
+            // <! Save Order Header !>
+            _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
+            _unitOfWork.Save();
+
+            // <! Save Order Details !>
+            foreach(var cart in ShoppingCartVM.ShoppingCartList)
+            {
+                OrderDetail orderDetail = new()
+                {
+                    ProductId = cart.ProductId,
+                    OrderHeaderId = ShoppingCartVM.OrderHeader.Id,
+                    Price = cart.Price,
+                    Count = cart.Count,
+                };
+                _unitOfWork.OrderDetail.Add(orderDetail);
+                _unitOfWork.Save();
+            }
+
+
+            // <! capture payment logic for regular user !>
+            if (applicationUser.CompanyId.GetValueOrDefault() == 0)
+            {
+                // stripe logic
+            }
+
+			TempData["success"] = "Order details submitted successfully.";
+			return RedirectToAction(nameof(OrderConfirmation), new { id=ShoppingCartVM.OrderHeader.Id });
+		}
+
+        public IActionResult OrderConfirmation (int id)
+        {
+            return View(id);
+        }
+		#endregion
+
+		#region Helper Methods
+		private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
         {
             if (shoppingCart.Count <= 50)
             {
