@@ -11,5 +11,11 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     {
         // Update One
         void Update(OrderHeader obj);
+
+        // Update Order Status
+        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
+
+        // Update Stripe Payment ID
+        void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId);
     }
 }
