@@ -11,6 +11,7 @@ using System.Security.Claims;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
 	[Area("Admin")]
+	[Authorize]
 	public class OrderController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -65,6 +66,16 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 			_unitOfWork.Save();
             TempData["success"] = "Order details updated successfully.";
             return RedirectToAction(nameof(Details), new { orderId = orderHeaderFromDb.Id } );
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+        public IActionResult StartProcessing()
+		{
+			_unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcess);
+            _unitOfWork.Save();
+            TempData["success"] = "Order details updated successfully.";
+            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
         }
         #endregion
 
