@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Bulky.Utility\BulkyBook.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DBInitializer\" />
-  </ItemGroup>
-
 </Project>
