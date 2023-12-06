@@ -23,7 +23,7 @@ namespace BulkyBook.Utility
         {
             //return Task.CompletedTask;
 
-            /* Logic to send email */
+            /* Logic to send email -- fails by secret though */
             var client = new SendGridClient(SendGridSecret);
 
             var from = new EmailAddress("hello@dotnetmastery.com", "Bulky Book");
