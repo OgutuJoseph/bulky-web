@@ -1,0 +1,350 @@
+Section 6: Product CRUD
+
+
+81. Create Product Model
+• 
+
+
+
+82. Seed Product and Assignment 1
+• 
+
+
+
+83. Assignment 1 Solution - Product Repository and UnitOfWork
+• 
+
+
+
+84. Assignment 2 - Product CRUD Operations
+• 
+
+
+
+85. Assignment 2 Solution - Product CRUD Operations
+• 
+
+
+
+86. Add Foreign Key in EF Core
+• Don't directly delete un-ran migration, instead
+    - Use command :: remove-migration
+
+
+
+87. Add Image Url Column
+• 
+
+
+
+88. Projections in EF Core
+• When you use IEnumerable<SelectListItem> and,,
+    -> you click f12 on SelectListItem, you are presented with multiple options of what you can retrieve from the select list.
+
+    ^^
+    ::
+    public class SelectListItem
+    {
+        public SelectListItem();
+        ...
+        public SelectListItem(string text, string value);
+        ...
+        public SelectListItem(string text, string value, bool selected);
+        ...
+        public SelectListItem(string text, string value, bool selected, bool disabled);
+
+
+        public bool Disabled { get; set; }
+        ...
+        public SelectListGroup Group { get; set; }
+        ...
+        public bool Selected { get; set; }
+        ...
+        public string Text { get; set; }
+        ...
+        public string Value { get; set; }
+    }
+
+
+89. ViewBag in Action
+- ViewBag transfers data from the Controller to the View, not vice versa. Ideal for situations in which the temporary data is not in a model.
+- ViewBag is a dynamic property that takes advantage of the new dynamic features in C# 4.0 (*^)
+- Any number of properties and values can be assigned to ViewBag.
+- The ViewBag's life only lasts during the current http request. ViewBag values will be null if redirection occurs.
+- ViewBag is actually a wrapper around ViewData.
+
+
+
+90. ViewData in Action
+- ViewData transfers data from the Controller to the View, not vice versa. Ideal for situations in which the temporary data is not in a model.
+- ViewData is derived from ViewDataDictionary which is a dictionary type.
+- ViewData value must be type cast before use.
+- ViewData's life only lasts during the current http request. ViewData values will be null if redirection occurs.
+
+89&90*** - ViewBag internally inserts data into ViewData dictionary. So the key of ViewData and property of ViewBag must not match.
+
+• TempData
+    -> can be used to store data between two consecutive requests.
+    -> internally use Session to store data. Think of it as a short lived session.
+    -> tempdata value must be type cast before use. Check for null values to avoid runtime error.
+    -> can be used to store only one time messages like error / success messages, validation messages.
+
+
+
+91. View Models in Action
+- Whe using SelectListItem in BulkyWeb.Models
+    -> First need to install package "Microsoft.AspNetCore.Mvc.ViewFeatures" [version 2.1.3 >> then stable version 2.2.0 was deprecated]
+
+- [ValidateNever]
+    -> Used to surpress validation i.e., on the Category objects (Category - Product Model ,, CategoryList - ProductVM)..
+        -> + any other field that you would wish to surpress validation on
+
+:::::::::
+public IActionResult Create(ProductVM obj)
+{
+    // !! Discard below too if [ValidateNever] implemented !!
+    //if (obj.Product.Title != null && obj.Product.Title.ToLower() == "test" || obj.Product.Title != null && obj.Product.Title.ToLower() == "testing")
+    //{
+    //    ModelState.AddModelError("", "Test is an invalid value");
+    //}
+    if (ModelState.IsValid)
+    {
+        _unitOfWork.Product.Add(obj.Product);
+        _unitOfWork.Save();
+        TempData["success"] = "Product created successfully.";
+        return RedirectToAction("Index");
+    }
+
+    return View();
+}
+
+
+
+92. File Upload Input
+• 
+
+
+
+93. Combine, Create and Edit Pages
+- Combine both
+    --> public IActionResult Create()
+    --> public IActionResult Edit(int? id)
+
+    to (Update + Insert) :: (You may, or you may not have id, hence '?')
+    --> public IActionResult Upsert(int? id)
+
+
+    ::&&::
+    [HttpPost]
+    --> public IActionResult Create(ProductVM obj)    
+    [HttpPost]
+    --> public IActionResult Edit(Product obj)
+
+    to
+    --> public IActionResult Upsert(ProductVM obj, IFormFile? file)
+
+
+94. Rich Text Editor
+- Add TinyMCE script on "_Layout.cshtml"
+    -> <script src="https://cdn.tiny.cloud/1/ml84d3rjg9p54t53cvf6aasyi35pe5thl6tk97qrsae93pgn/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+- Then in "Upsert.cshtml"
+    ->
+    <script>
+        tinymce.init({
+        selector: 'textarea',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
+
+95. Create Product
+• 
+
+
+
+96. Display Image on Update
+• 
+
+
+
+97. Handle Image on Update
+• Make sure to include,
+    ::
+    <input asp-for="Product.ImageUrl" class="form-control border-0 shadow" hidden />
+    ::,
+
+    so that the old image is deleted and replaced with the new one. 
+    ^ If left out, the ImageUrl field will go as null and the old image won't be deleted, when the new one is uploaded.
+
+
+
+98. Update Product Custom Code
+• By default update works fine, i.e.,
+    -> If you only provide field 'title' as the updated field, it will be the only updated field.
+    -> If the ImageUrl is sent as null, its expected to be deleted.
+    etc,,
+
+• But if you want to be explicit on what needs updating and so on, you can define this in repository. In this case, `Product Repository`
+    Replace
+    ::
+     public void Update(Product obj)
+    {
+        _db.Products.Update(obj);
+    }
+    ::
+    ^ Rather than directly updating the object
+     
+
+    With
+    ::
+    public void Update (Product obj)
+    {
+        var objFromDb = _db.Products.FirstOrDefault(u => u.Id == obj.Id);
+        if (objFromDb != null)
+        {
+            objFromDb.Title = obj.Title;
+            objFromDb.Description = obj.Description;
+            objFromDb.ISBN = obj.ISBN;
+            objFromDb.Author = obj.Author;
+            objFromDb.ListPrice = obj.ListPrice;
+            objFromDb.Price = obj.Price;
+            objFromDb.Price50 = obj.Price50;
+            objFromDb.Price100 = obj.Price100;
+            objFromDb.CategoryId = obj.CategoryId;
+            if (obj.ImageUrl != null)
+            {
+                objFromDb.ImageUrl = obj.ImageUrl;
+            }
+        }
+    }
+    ::
+    ^ Retrieve the product object from database, based on the Obj Id that you receive on [u => u.Id ==> obj.Id]
+    ^ If object from db is not null, we do a manual mapping of the properties, and define that if ImageUrl is not null, that is ONLY WHEN you update it.
+
+
+
+99. Loading Navigation Properties
+-> By default, on the Get All, for Products the `Category Id` is retrieved from the db.
+-> To include `Category` you can do this by
+    • Repository [ApplicationDbContext]
+        ::
+        public Repository(ApplicationDbContext db)
+        {
+            _db = db;
+            this.dbSet = _db.Set<T>();
+            // _db.Categories == dbSet
+            _db.Products.Include(u => u.Category);
+        }
+
+        - To include multiple fields you could have
+            -->  _db.Products.Include(u => u.Category).Include(u => u.CoverType)...
+        ::
+    
+    • Then make use of inludeProperties still on Repository [public IEnumerable<T> GetAll()] && [public T Get(Expression<Func<T, bool>> filter)]
+        ::
+        public IEnumerable<T> GetAll(string? includeProperties = null)
+        {
+            IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.ToList();
+        }
+
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        {
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.FirstOrDefault();
+        }
+        ::
+    
+    • As well as on the interface (IRepository) [IEnumerable<T> GetAll();] && [T Get(Expression<Func<T, bool>> filter)]
+        ::
+        IEnumerable<T> GetAll(string? includeProperties = null);
+
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
+        ::
+
+    • Then on the `ProductController`
+    -> On `Index` function [List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();]
+    ^ Add the include, be sure to note that it is Case Sensitive
+    -> List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+        
+
+
+
+100. DataTables API
+- From datatables.net copy css and js
+- Inside BulkyBookWeb >> Views >> Shared >> Layout 
+ Copy,
+
+css -> //cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+js -> //cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js
+ <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+ -> To test function [Public Controller --> public IActionResult GetAll()]
+    - On browser, go the url
+        --> https://localhost:7298/Admin/Product/GetAll
+
+
+
+101. Load DataTables
+- Go to BulkyBookWeb >> wwwroot >> js 
+    -> create file [new item] product.js
+
+    --> Code
+
+
+102. Datatable Column Count
+• Data columns in cshtml should not exceed the number of columns in js.
+    - E.g: if you have the cshtml with 5 columns and the js has 7 columns, no data will be displayed in the data table.
+
+
+
+103. Edit Product Link in DataTable
+• 
+
+
+
+104. Delete Product
+• In #region#
+
+- Product isn't removed and API isn't invoked if you have the following
+    ::
+    [HttpDelete]
+    public IActionResult Delete(int? id)
+    ::
+
+    ^ Leaving it as below, resolves the issue
+    public IActionResult Delete(int? id)
+
+
+
+105. Sweet Alerts
+- With [on product.js]
+    <a href="/admin/product/delete?id=${data}" class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
+    :: Replaced as ::
+    <a onClick=Delete('/admin/product/delete?id=${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i></a>
+
+    -> You man or MAY NOT (STILL WORKS EVEN IN ABSENCE) revert back to 
+    ::
+    [HttpDelete]
+    public IActionResult Delete(int? id)
+    ::
+
+

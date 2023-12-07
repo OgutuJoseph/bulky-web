@@ -1,0 +1,80 @@
+Section 3: Razor Project
+
+
+54. Create Razor Project
+• In Bulky >> 
+    -> Right Click Solution >> Add Project
+    -> Template :: [search 'Razor'] ASP.NET Core Web App !!Different from MVC!!
+    -> Select Project Dir >> Project Name [BulkyWeb] >> Solution Name [Bulky]
+        :: Leave 'Place solution and project in same directory' unchecked
+    -> Framework :: .NET 6.0 (Long Term Support)
+
+
+
+55. What's Different in Razor Project?
+• 
+
+
+
+56. Setup EF Core
+• Basic steps for project setup
+    -> Set up Nuget Packages (copy from other project, two options available)
+        ^ Option 1: Nuget Package Manager >> check appropriate project >> install
+        ^ Option 2: Edit csproj file
+    -> Create Model [Models]
+    -> Create ApplicationDbContext [Data]
+    -> Update Program.cs
+    -> Run migrations (1. add-migration, 2. update-database)
+
+
+
+
+57. Create first Razor Page
+• Two approaches
+    
+    [If you know in model we have the same name, but you will repeat 'using' statements multiple times]
+    -> 1. Create folder 'Category' in [Pages]
+        - Create each file i.e., Index, Create, Update etc.
+
+    [you don't have to be explicit, *i.e., don't have to make multiple declarations]
+    -> 2. Create folder 'Categories' in [Pages]
+        - Create each file i.e., Index, Create, Update etc.
+
+
+
+58. Display all Categories
+• 
+
+
+
+59. Create Category UI
+• 
+
+
+
+60. Create Category Post Handler
+• [BindProperty] -> inside `public class CreateModel` or [BindProperties] -> outside `public class CreateModel`
+    ^ Used to bind properties defined in page model
+
+
+
+61. Edit and Delete Category
+• [BindProperty] -> inside `public class CreateModel` or [BindProperties] -> outside `public class CreateModel`
+    ^ Used to bind properties defined in page model
+    ^ Enables you to pass Id of object so that you don't run into the error below:
+        -> 'Object reference not set to an instance of an object.'
+
+
+62. Toastr Notifications and Partial Views
+• No need for below in _Notification.cshtml
+    ->
+        @page
+        @model BulkyWebRazor_Temp.Pages.Shared._NotificationModel
+        @{
+        }
+
+    -> Similarly, you can discard _Notification.cshtml.cs
+
+
+
+

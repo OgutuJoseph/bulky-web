@@ -1,0 +1,56 @@
+Section 13: Advanced Concepts
+
+
+171. Authorization
+• 
+
+
+
+172. Session in .NET Core   
+• 
+
+
+
+173. Remove from Session and Bug
+• 
+
+
+
+174. Bug Solution and Logout
+• 
+
+
+
+175. Create View Component
+• 
+
+
+
+176. View Component in Action
+• 
+
+
+
+177. Facebook Social Login
+• Adding Microsoft.AspNetCore.Authentication.Facebook Nuget Package 
+    -> In Bulky.BulkyBookWeb
+    --> From Nuget Packet Manager
+        -> Microsoft.AspNetCore.Authentication.Facebook [version 6.0.24]
+
+
+
+
+178. Facebook Login in Action
+• 
+
+
+
+179. Creating Admin and Employee Accounts
+• 
+
+
+
+180. Session Bug
+• 
+
+

@@ -1,0 +1,108 @@
+Section 11: Order Confirmation
+Customer
+::  Before Payment  >   Order Confirmation [After Pay]  >   Processing  >   Shipped
+OS  Pending             Approved                            Processing      Shipped      
+PS  Pending             Approved                            Approved        Approved
+
+Company
+::  OrderConfirmation   >   Processing  >   Shipped     >   Makes Payment
+OS  Approved                Processing      Shipped         Shipped      
+PS  ApprovedForDP           ApprovedForDP   ApprovedForDP   Approved
+
+
+
+143. Create Order Header and Details Model
+• 
+
+
+
+144. Add Order Header and Details Repository
+• 
+
+
+
+145. Make ShoppingCartVM more Dynamic
+• 
+
+
+
+146. Summary GET Action Method
+• 
+
+
+
+147. Load Summary UI with Data
+• 
+
+
+
+148. Order Status
+• 
+
+
+
+149. Summary POST Action
+• As opposed to having your controller-method as:
+
+[HttpPost]
+[ActionName("Summary")]
+public IActionResult SummaryPOST(ShoppingCartVM shoppingCartVM)
+
+
+• You can modify the controller and use `Bind Property` as follows
+[BindProperty]
+public ShoppingCartVM ShoppingCartVM { get; set; }
+
+...
+
+[HttpPost]
+[ActionName("Summary")]
+public IActionResult SummaryPOST()
+
+^ That way, the ShoppingCartVM is binded on the POST method
+
+
+
+150. Place Order for Company Accounts
+• 
+
+
+
+151. Register for Stripe Account
+• 
+
+
+
+152. Configure Stripe in Project
+• Adding Stripe Nuget Package 
+    --> From Nuget Packet Manager
+        -> Stripe.net [version 43.2.0] (Latest Stable Version)
+
+• You also have to configure `Stripe` on Program.cs as follows
+    ::
+    before -> app.UseRouting()
+
+    ::
+    -> StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
+
+
+153. Add Helper Methods in Order Header Repository
+• 
+
+
+
+154. Stripe in Action
+• 
+
+
+
+155. Confirm Stripe Payment
+• 
+
+
+
+156. Order Placed Successfully with Stripe
+• 
+
+
