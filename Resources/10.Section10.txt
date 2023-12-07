@@ -1,0 +1,74 @@
+Section 10: Shopping Cart
+
+
+130. Add Shopping Cart Model
+• 
+
+
+
+131. Add Shopping Cart to Repository
+• 
+
+
+
+132. Add Application User Repository
+• 
+
+
+
+133. What will be Model for Details Page
+• 
+
+
+
+134. Add to Cart
+• 
+
+
+
+135. Fix Issue with Add to Cart
+• 
+
+
+
+136. A Weird Bug
+• 
+
+
+
+137. Shopping Cart UI
+• 
+
+
+
+138. Get Shopping Cart
+• 
+
+
+
+139. Get Order Total in Shopping Cart
+// <! Below is better presented as !>
+//double price = GetPriceBasedOnQuantity(cart);
+//ShoppingCartVM.OrderTotal += (price * cart.Count);
+
+cart.Price = GetPriceBasedOnQuantity(cart);
+ShoppingCartVM.OrderTotal += (cart.Price * cart.Count);
+
+
+
+140. Dynamic Shopping Cart
+• 
+
+
+
+141. Update Quantity in Shopping Cart
+• 
+
+
+
+142. Order Summary UI
+• 
+
+
+
+

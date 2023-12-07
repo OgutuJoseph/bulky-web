@@ -1,0 +1,258 @@
+Section 2: Category CRUD Operations
+
+
+23. Create Category Model
+• In Bulky >> BulkyWeb
+    -> Right Click 'Models' Add Class 'Category.cs'
+
+
+
+24. Data Annotations
+• [Key] 
+    -> In the event you want to explicitly define the Primary Key field, use the [Key] data annotation
+    -> Otherwise you can leave it out, i.e., if e.g. the column is purely identified as  'Id'
+    -> You can also leave it if, e.g., Model Name is 'Category' and the (primary) column name is 'CategoryId'
+
+• [Required]
+    -> To indicate a field is required / not nullable.
+
+
+
+25. Connection String
+• 
+
+
+
+26. Nuget Packages for Entity Framework Core
+• Adding Microsoft.EntityFrameworkCore Nuget Package 
+    --> From Nuget Packet Manager
+        -> Microsoft.EntityFrameworkCore [version 6.0.24]
+
+• Adding Microsoft.EntityFrameworkCore.SqlServer Nuget Package 
+    --> From Nuget Packet Manager
+        -> Microsoft.EntityFrameworkCore.SqlServer [version 6.0.24] 
+
+• Adding Microsoft.EntityFrameworkCore.Tools Nuget Package 
+    --> From Nuget Packet Manager
+        -> Microsoft.EntityFrameworkCore.Tools [version 6.0.24]
+        
+
+
+27. Setup ApplicationDbContext
+• In Bulky >> 
+    -> Right Click 'BulkyWeb' >> 'Add Folder' >> Data
+    -> In [Bulky >> BulkyWeb >> Data] Add Class 'ApplicationDbContext.cs'
+
+    - Any class [["within the file"]] must implement the 'DbContext' class
+    ^ on `pulic class ApplicationDbContext` add `:  DbContext`
+    ^ `DbContext` is the root class of entity framework core, through which one can access entity framework.
+
+- Register on Porgram.cs
+    -> above (or before)    :: var app = builder.Build();
+    -> add                  :: builder.Services.AddDbContext<ApplicationDbContext>(options => 
+                                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+28. Create Database
+• Create Database
+    -> update-databse [Make sure SSMS is logged-in to by Windows Server || The SDK and packages' versions have no compatibility issues]
+
+
+
+29. Create Category Table
+• [Key] Data Annotation
+    -> E.g., when creating a table named 'Category' for instance, 
+    you have to provide annotation [Key] if the primary key value is not defined as 'Id' or 'CategoryId'
+
+• Create Table
+    -> add-migration [MigrationName]
+    -> add-migration AddCategoryTableToDb
+
+
+30. Add Category Controller
+• 
+
+
+
+31. Add Category Link in Header
+• 
+
+
+
+32. Seed Category Table
+• Seed Table
+    -> add-migration [MigrationName]
+    -> add-migration SeedCategoryTable 
+
+
+
+33. Get All Categories
+** To inspect
+    -> Introduce breaking points; 2, one on where you want to inspect and the line that follows.
+    -> Run and call controller method / route invoking the function with break.
+    -> Hit F10 to move to next breaking point, and when you hover at your point of interest, you will see the raw data (e.g., count, list).
+
+
+
+34. Hot Reload
+-> If you change something in the controller(s) with project running, you have to rebuild the project.
+-> If you change something in the views only, you can refresh browser and the updates will reflect.
+
+
+
+35. Display All Categories
+• 
+
+
+
+36. Bootswatch Theme and Bootstrap Icons
+- Download [bootswatch theme] (lux) in Resources/Theme/Section 2/bootstrap.css
+- Copy [bootswatch theme] to (replacing original contents) Bulky/BulkyWeb/wwwroot/lib/bootstrap/dist/css/bootstrap.css
+- Then on [_Layout.cshtml], replace
+    -> <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    :: with ::
+    -> <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+
+
+37. Design Category List Page
+• 
+
+
+
+38. Create Category UI
+• 
+
+
+
+39. Input Tag Helpers
+-> When using input helper 'asp-for' you don't need to define 'type'. It will get it from the Model.
+-> Data Annotation :: [DisplayName("<Title>")]
+    ^ Used to define how you want a model's title to be displayed on the Client Side
+
+
+
+40. Create Category
+• Redirect after Saving
+    -> To return to current view
+            return View();
+
+    -> To return to view from another method e.g. Index within the same Controller
+            return RedirectToAction("Index");
+    
+    -> To return to view from another method e.g. Index inside a different Controller
+            return RedirectToAction("Index", "Category");
+
+
+
+41. Server Side Validations
+-> Data Annotation :: [Range(1, 100)]
+    ^ Used to define a range within which an input value should be
+
+
+
+42. Custom Validations
+• E.g.
+    ->
+    if (obj.Name == obj.DisplayOrder.ToString())
+    {
+        ModelState.AddModelError("Name", "The Display Order cannot exactly match the Name");
+    }
+
+
+
+43. Asp Validation Summary
+• 
+
+
+
+44. Client Side Validations
+• 
+
+
+
+45. Edit and Delete Buttons
+• 
+
+
+
+46. Get Category Details to Edit
+• Ways to get item by Id
+    1. Category? categoryFromDb = _db.Categories.Find(id);
+    2. Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id == id);
+        -> can work when `Id` is not primary key
+    3. Category? categoryFromDb2 = _db.Categories.Where(u=>u.Id == id).FirstOrDefault();
+
+
+
+47. Update Category
+• To avoid creation of new record ::
+    -> use public IActionResult Edit(int? id)
+
+    instead of
+
+    -> public IActionResult Edit(int? categoryId)
+
+
+
+48. Update Category in Action
+• To overcome above, use hidden input field for 'Id' in Edit view.
+    ^ It could be hidden or not, just make sure it's passed as part of the body sent for updating.
+
+
+
+49. Get and Post Action for Delete Category
+-> Since we're passing the same params on the below:
+    -> public IActionResult Delete(int? id)
+    -> public IActionResult DeletePost(int? id)
+
+    the latter can't have the same name as the former, hence you also have to explicitly define the ActionName as below:
+    ->
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeletePost(int? id)
+
+
+
+50. Delete Category in Action 
+•     
+
+
+
+51. TempData
+-> Values passed in TempData are only available on the next render.
+    -> I.e., if passed from `Create` to `Index', will only be available on the first render of `Index`
+
+
+
+52. Partial Views
+• <partial name="_Notification" />
+    -> Instead of having ^ in a [View]/index.cshtml,
+        ^ You can include it in _Layout.cshtml >> body >> before  @RenderBody()
+        ^ This rids the need to replicate the same on all views where you would want them, rather it is globally accessible to all views utilizing the TempData
+
+
+
+53. Toastr Notification
+-> Go to this link: https://codeseven.github.io/toastr/
+    ^ Under CDNjs,, Copy css (can use debug)
+        -> //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css
+        -> Add above to _Layout.cshtml
+            ^ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    ^ Under CDNjs,, copy js (minified - to be compatible with PROD env)
+        -> //cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js
+        -> Add above to notification (success / error) inside _Notification.cshtml
+            ^ <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        -> You also need jquery (minified version)
+            ^ <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+

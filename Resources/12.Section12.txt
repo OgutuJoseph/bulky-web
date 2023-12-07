@@ -1,0 +1,82 @@
+Section 12: Order Management
+Customer
+::  Before Payment  >   Order Confirmation [After Pay]  >   Processing  >   Shipped
+OS  Pending             Approved                            Processing      Shipped      
+PS  Pending             Approved                            Approved        Approved
+
+Company
+::  OrderConfirmation   >   Processing  >   Shipped     >   Makes Payment
+OS  Approved                Processing      Shipped         Shipped      
+PS  ApprovedForDP           ApprovedForDP   ApprovedForDP   Approved
+
+
+
+157. OrderVM and Order Controller 
+• 
+
+
+
+158. Order List UI 
+• 
+
+
+
+159. Add Status Filter 
+• 
+
+
+
+160. Make Status Selected Active 
+• 
+
+
+
+161. Demo - Filters in Order List 
+• 
+
+
+
+162. Order Details Get Action 
+• 
+
+
+
+163. Loading Order Details Header 
+• 
+
+
+
+164. Display Order Details 
+• 
+
+
+
+165. Update Order Details 
+• 
+
+
+
+166. Only Admin and Employee Can See all Orders 
+• 
+
+
+
+167. Order Processing Buttons Logic 
+• 
+
+
+
+168. Ship Order 
+• 
+
+
+
+169. Cancel Order 
+• 
+
+
+
+170. Process Delayed Payment 
+• 
+
+

@@ -1,0 +1,30 @@
+Section 7: Home and Details Page
+
+
+106. Home Page
+• 
+
+
+
+107. Details Action Method
+- When in the same area, as opposed to using href on an anchor tag, you can as well use `asp-action` tag-helper and define the controller method.
+    I.e., -> asp-action="Details"
+
+    ^ Following above, depending on how you've passed the param in the controller method, the parameter value must match the `asp-route-__` tag-helper.
+    I.e.,   -> if method is public IActionResult Details (int id)
+                :: tag-helper must be `asp-route-id`
+            -> if method is public IActionResult Details (int productId)
+                :: tag-helper must be `asp-route-productId`
+        
+
+
+
+108. Details UI
+- Whatever you pass in the method as model is the one that should be defined in the View
+    I.e.,
+        -> if it's IEnumerable<Product> 
+            view (Index) will be `@model IEnumerable<Product>`
+         -> if it's Product
+            view (Details) will be `@model Product`
+
+
